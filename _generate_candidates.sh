@@ -6,7 +6,6 @@
 #SBATCH --qos=normal
 #SBATCH -n 1
 
-nvidia-smi
 # candidates will be saved in ../../data/${dataset}/candidates/${decoding_method}/${model}.json
 dataset=$1
 set=$2
@@ -16,7 +15,7 @@ output_max_length=$5
 start_idx=$6
 end_idx=$7
 data_dor="./data"
-cache_dir="/home/dongfu/WorkSpace/LLM-Blender/hf_models" # specify your huggingface cache dir or "" for default cache dir
+cache_dir="/data/yang_kaiyu/RankGPT/LLM-Blender/hf_models" # specify your huggingface cache dir or "" for default cache dir
 
 
 # generation parameters
@@ -50,7 +49,7 @@ else
     echo "start_idx: $start_idx"
     echo "end_idx: $end_idx"
 fi
-/home/dongfu/.conda/envs/llm_reranker/bin/python generate_candidates.py \
+/home/user/anaconda3/envs/llm-gen/bin/python generate_candidates.py \
     --model $model \
     --data_dir $data_dor \
     --dataset $dataset \
